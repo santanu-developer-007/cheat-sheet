@@ -66,3 +66,27 @@ if(old('gender')){
   <div class="text-danger">{{$errors->first('country_id') }}</div>
 </div>
 ```
+
+### MultiSelect Select2
+```html
+@php
+  $selected_countries = $variable->selected_countries;
+  if(old('country_id') && count(old(country_id))>0 ){
+    $selected_countries = old('country_id');
+  }
+@endphp
+<div class="col-lg-12">
+  <div class="form-group">
+    <label class="form-label">Country<span class="required">*</span></label>
+    <select name="country_id[]" class="form-control select2" multiple>
+      <option value="">--Select--</option>
+      @if(count($countries) > 0)
+        @foreach($countries as $country)
+          <option value="{{ $country->id }}" {{ (in_array($country->id, $selected_countries)) ? 'selected' : '' }}>{{ $country->name }}</option>
+        @endforeach
+      @endif
+    </select>
+  </div>
+  <div class="text-danger">{{$errors->first('country_id') }}</div>
+</div>
+```
