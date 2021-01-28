@@ -119,3 +119,55 @@ if(old('gender')){
   <span class="text-danger">{{$errors->first('checkbox_name') }}</span>
 </div>
 ```
+### FileUpload
+```html
+@php
+  $uploaded_image = NULL;
+  if($variable->uploaded_image > 0){
+    $uploaded_image = $variable->uploaded_image;
+  }
+@endphp
+<div class="col-md-12 col-sm-12">
+  <label class="control-label">Document</label>
+  <input type="file" class="form-control" name="document">
+  <div class="text-danger">{{$errors->first('document') }}</div>
+  <hr>
+</div>
+<div class="col-md-12 col-sm-12">
+  @if($uploaded_image !== NULL)
+    <div>
+      <img src="{{ asset($uploaded_image->image_url) }}" height=100 width=100 />
+      <a href="{{route('route_name', $uploaded_image->id)}}" class="text-danger">Remove</a>
+    </div>
+  @endif
+</div>
+```
+
+
+### Multiple FileUpload
+```html
+@php
+  $uploaded_images = [];
+  if(count($variable->uploaded_images) > 0){
+    $uploaded_images = $variable->uploaded_images;
+  }
+@endphp
+<div class="col-md-12 col-sm-12">
+  <label class="control-label">Documents</label>
+  <input type="file" class="form-control" name="documents[]" multiple>
+  <div class="text-danger">{{$errors->first('documents') }}</div>
+  <div class="text-danger">{{$errors->first('documents.*') }}</div>
+  <hr>
+</div>
+<div class="col-md-12 col-sm-12">
+  @if(count($uploaded_images) > 0)
+    @foreach($uploaded_images as $img)
+      <div>
+        <img src="{{ asset($img->image_url) }}" height=100 width=100 />
+        <a href="{{route('route_name', $img->id)}}" class="text-danger">Remove</a>
+      </div>
+      <hr>
+    @endforeach
+  @endif
+</div>
+```
