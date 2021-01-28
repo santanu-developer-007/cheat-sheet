@@ -51,7 +51,6 @@ if(old('gender')){
     $selected_country = old('country_id');
   }
 @endphp
-@php  if(old('country_id')){ $address_country=old('country_id'); }else{ $address_country=; } @endphp
 <div class="col-lg-12">
   <div class="form-group">
     <label class="form-label">Country<span class="required">*</span></label>
