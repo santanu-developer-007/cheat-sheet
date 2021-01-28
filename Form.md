@@ -94,3 +94,28 @@ if(old('gender')){
   <div class="text-danger">{{$errors->first('country_id') }}</div>
 </div>
 ```
+
+### CheckBox Group
+```html
+@php
+  $selected_values = $variable->selected_values;
+  if(old('checkbox_name')){
+    $selected_values = old('checkbox_name');
+  }
+@endphp
+<div class="col-md-12">
+  <p class="form-label">Label</p>
+  @foreach($data as $item)
+    <div class="form-check">
+      @if(in_array($item->id, $selected_values))
+        <input name="checkbox_name[]" class="form-check-input" type="checkbox" value="{{ $item->id }}" id="defaultCheck{{ $item->id }}" checked="checked">
+        <label class="form-check-label" for="defaultCheck{{ $item->id }}">{{ $item->title }}</label>	
+      @else
+        <input name="checkbox_name[]" class="form-check-input" type="checkbox" value="{{ $item->id }}" id="defaultCheck{{ $item->id }}">
+        <label class="form-check-label" for="defaultCheck{{ $item->id }}">{{ $item->title }}</label>
+      @endif
+    </div>
+  @endforeach
+  <span class="text-danger">{{$errors->first('checkbox_name') }}</span>
+</div>
+```
