@@ -69,6 +69,10 @@ if(old('gender')){
 
 ### MultiSelect Select2
 ```html
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+```
+```html
 @php
   $selected_countries = $variable->selected_countries;
   if(old('country_id') && count(old(country_id))>0 ){
